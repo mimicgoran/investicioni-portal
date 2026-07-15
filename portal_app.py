@@ -86,7 +86,7 @@ def prolazi_filtere(record: dict) -> bool:
     if izabrana_opstina != "Sve" and record["opstina"] != izabrana_opstina:
         return False
 
-    povrsina = record.get("ukupna_povrsina_m2")
+    povrsina = record.get("povrsina_prikaz_m2")
     if isinstance(povrsina, (int, float)):
         if povrsina < min_povrsina:
             return False
