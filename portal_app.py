@@ -21,6 +21,42 @@ records = load_data()
 st.title("Investicioni portal")
 st.caption("Pronađite lokacije koje odgovaraju vašim investicionim kriterijumima")
 
+# Na mobilnom je sidebar (filteri) sklopljen po defaultu, pa hajlajtujemo
+# strelicu za otvaranje i dodajemo kratak podsetnik (vidljiv samo na
+# uskim ekranima).
+st.markdown(
+    """
+    <style>
+    [data-testid="stSidebarCollapsedControl"] {
+        animation: rgz-pulse 1.6s infinite;
+        border-radius: 6px;
+    }
+    [data-testid="stSidebarCollapsedControl"] svg {
+        color: #ff4b4b;
+    }
+    @keyframes rgz-pulse {
+        0%   { box-shadow: 0 0 0 0 rgba(255, 75, 75, 0.55); }
+        70%  { box-shadow: 0 0 0 12px rgba(255, 75, 75, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(255, 75, 75, 0); }
+    }
+    .rgz-mobile-hint { display: none; }
+    @media (max-width: 768px) {
+        .rgz-mobile-hint {
+            display: block;
+            background: #fff3cd;
+            border: 1px solid #ffe08a;
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+    }
+    </style>
+    <div class="rgz-mobile-hint">👉 Tapni na strelicu gore levo da otvoriš filtere za pretragu.</div>
+    """,
+    unsafe_allow_html=True,
+)
+
 opstine = sorted({r["opstina"] for r in records if r["opstina"]})
 sve_vrste = sorted({v for r in records for v in r["vrste_zemljista"]})
 
